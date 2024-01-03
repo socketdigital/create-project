@@ -26,7 +26,7 @@ in create-project:
 
 ```
 npm login
-npm publish
+npm publish --access=public
 
 cd path/to/another/new/project
 npx @socketd/create-project
