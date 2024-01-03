@@ -1,0 +1,29 @@
+{
+  "name": "@socketd/create-project",
+  "version": "0.0.1",
+  "description": "Create a project",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "create-project": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/socketdigital/create-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/socketdigital/create-project/issues"
+  },
+  "homepage": "https://github.com/socketdigital/create-project#readme",
+  "devDependencies": {
+    "cross-spawn": "^7.0.3",
+    "kleur": "^4.1.5",
+    "minimist": "^1.2.8",
+    "prompts": "^2.4.2"
+  }
+}
