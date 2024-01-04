@@ -6,7 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "url";
 
-import { red, green, yellow, blue, cyan } from "kleur/colors";
+import kleur from "kleur";
 import spawn from "cross-spawn";
 
 export default class CreateProject {
@@ -50,13 +50,15 @@ export default class CreateProject {
 
     if (Files.isNonEmptyDirectory(process.cwd())) {
       console.log(
-        red(`. (${this.projectName}) is not empty, please choose another path.`)
+        kleur.red(
+          `. (${this.projectName}) is not empty, please choose another path.`
+        )
       );
       process.exit(1);
     }
 
     console.log(
-      cyan(`Creating project '${this.projectName}' in current directory.`)
+      kleur.cyan(`Creating project '${this.projectName}' in current directory.`)
     );
     console.log(this.targetDir);
 
@@ -81,11 +83,11 @@ export default class CreateProject {
 
     console.log(
       "\n",
-      yellow(`Creating ${templateName}`),
+      kleur.yellow(`Creating ${templateName}`),
       "\n",
-      yellow(`Project name: ${projectName}`),
+      kleur.yellow(`Project name: ${projectName}`),
       "\n",
-      yellow(`Directory:    ${projectName}`)
+      kleur.yellow(`Directory:    ${projectName}`)
     );
 
     const templateSourceDir = `${this.getParentDirname()}/${templateName}`;
@@ -104,7 +106,7 @@ export default class CreateProject {
   exitIfProjectExists(projectName) {
     if (Files.pathExists(projectName)) {
       console.error(
-        red(
+        kleur.red(
           `The path ${projectName} already exists. Please remove or choose another path.`
         )
       );
@@ -122,9 +124,9 @@ export default class CreateProject {
   copyTemplateDirectory(templateSourceDir, projectPath, templateName) {
     console.log(
       "\n",
-      blue(`Copying ${templateName}`),
+      kleur.blue(`Copying ${templateName}`),
       "\n",
-      blue(`to ${projectPath}`)
+      kleur.blue(`to ${projectPath}`)
     );
     fs.cpSync(templateSourceDir, projectPath, { recursive: true });
 
@@ -160,7 +162,7 @@ export default class CreateProject {
     });
     if (npm.status !== 0) {
       console.error(
-        red(`Failed to run npm install in ${projectPath}. Exiting.`)
+        kleur.red(`Failed to run npm install in ${projectPath}. Exiting.`)
       );
       process.exit(1);
     }
@@ -178,9 +180,9 @@ export default class CreateProject {
   successMessage(projectName) {
     console.log(
       "\n",
-      green(`Created project ${projectName}`),
+      kleur.green(`Created project ${projectName}`),
       "\n\n",
-      green(`cd ${projectName}`),
+      kleur.green(`cd ${projectName}`),
       "\n"
     );
   }
@@ -188,9 +190,9 @@ export default class CreateProject {
   successMessageCurrentDirectory(projectName) {
     console.log(
       "\n",
-      green(`Created project ${projectName}`),
+      kleur.green(`Created project ${projectName}`),
       "\n",
-      green(`in current directory.`)
+      kleur.green(`in current directory.`)
     );
   }
 }

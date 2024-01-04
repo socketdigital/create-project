@@ -17,7 +17,12 @@ export default class Files {
 
   static pathIsEmptyOrOnlyHasDotGit(path) {
     const files = fs.readdirSync(path);
-    return files.length === 0 || (files.length === 1 && files[0] === ".git");
+    const filtered = files.filter(function (value, index, arr) {
+      return value !== ".DS_Store";
+    });
+    return (
+      filtered.length === 0 || (filtered.length === 1 && filtered[0] === ".git")
+    );
   }
 
   static isNonEmptyDirectory(directory) {

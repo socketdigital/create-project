@@ -29,7 +29,7 @@ npm login
 npm publish --access=public
 
 cd path/to/another/new/project
-npx @socketd/create-project
+npx @socketd/create-project@latest
 ```
 
 ## Update package
