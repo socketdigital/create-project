@@ -36,5 +36,5 @@ npx @socketd/create-project@latest
 
 ```
 npm version <type (patch|minor|major)>
-npm publish
+npm publish --access=public
 ```

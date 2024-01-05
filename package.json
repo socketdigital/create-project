@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "bin": {
-    "create-project": "./index.js"
+    "create-project": "./create-project/create-project.js"
   },
   "scripts": {
     "build:watch": "rollup --config --watch ",

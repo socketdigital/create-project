@@ -3,9 +3,9 @@ import { nodeResolve } from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 
 export default defineConfig({
-  input: "src/index.js",
+  input: "create-project/create-project-dev.js",
   output: {
-    file: "index.js",
+    file: "create-project/create-project.js",
     format: "es",
   },
   plugins: [nodeResolve(), commonjs()],
