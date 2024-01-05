@@ -13,7 +13,24 @@ export default class CreateProject {
   constructor() {
     this.targetDir = "";
     this.projectName = "";
-    this.templateName = "no-build-project";
+    this.templateName = "project-template";
+    this.buildTools = [];
+    this.buildToolsSettings = {
+      vite: {
+        version: "^5.0.8",
+        scripts: {
+          dev: "vite",
+          build: "vite build",
+          preview: "vite preview",
+        },
+      },
+      postcss: { version: "^8.4.33" },
+      "postcss-cli": {
+        version: "^11.0.0",
+        scripts: { "build:css": "postcss" },
+      },
+    };
+    this.sourceFolders = ["components", "public", "assets"];
   }
 
   async create() {
@@ -32,14 +49,17 @@ export default class CreateProject {
       this.toValidPackageName(this.projectName)
     );
     this.projectName = this.toValidPackageName(answers.projectName);
-    this.templateName = answers.template;
     this.projectDescription = answers.projectDescription;
+    this.buildTools = answers.buildTools;
     this.projectPath = Files.getFullDirPath(this.projectName);
     this._createProject(
       this.projectName,
       this.templateName,
       this.projectDescription,
-      this.projectPath
+      this.projectPath,
+      this.buildTools,
+      this.buildToolsSettings,
+      this.sourceFolders
     );
     this.successMessage(this.projectName);
   }
@@ -60,36 +80,54 @@ export default class CreateProject {
     console.log(
       kleur.cyan(`Creating project '${this.projectName}' in current directory.`)
     );
-    console.log(this.targetDir);
 
     const prompts = new Prompts();
     const answers = await prompts.promptForCurrentDirectory();
-    this.templateName = answers.template;
     this.projectDescription = answers.projectDescription;
+    this.buildTools = answers.buildTools;
     this.projectPath = Files.getFullDirPath("");
 
     this._createProject(
       this.projectName,
       this.templateName,
       this.projectDescription,
-      this.projectPath
+      this.projectPath,
+      this.buildTools,
+      this.buildToolsSettings,
+      this.sourceFolders
     );
 
     this.successMessageCurrentDirectory(this.projectName);
   }
 
-  _createProject(projectName, templateName, projectDescription, projectPath) {
+  _createProject(
+    projectName,
+    templateName,
+    projectDescription,
+    projectPath,
+    buildTools,
+    buildToolsSettings
+  ) {
     this.exitIfProjectExists(projectName);
 
-    const templateSourceDir = `${this.getProjectDirname()}/${templateName}`;
+    const sourceDir = this.getProjectDirname();
+
+    const templateSourceDir = path.join(
+      this.getProjectDirname(),
+      "create-project",
+      templateName
+    );
 
     Files.makeDir(projectPath);
     this.copyTemplateDirectory(templateSourceDir, projectPath, templateName);
+    this.copySourceFolders(sourceDir, this.sourceFolders, projectPath);
     this.writePackageJson(
       templateSourceDir,
       projectName,
       projectPath,
-      projectDescription
+      projectDescription,
+      buildTools,
+      buildToolsSettings
     );
     this.installPackageJson(projectPath);
   }
@@ -108,7 +146,8 @@ export default class CreateProject {
   getProjectDirname() {
     const filename = fileURLToPath(import.meta.url);
     const dirname = path.dirname(filename);
-    return dirname;
+    const parentDir = path.resolve(dirname, "..");
+    return parentDir;
   }
 
   copyTemplateDirectory(templateSourceDir, projectPath, templateName) {
@@ -127,11 +166,21 @@ export default class CreateProject {
     );
   }
 
+  copySourceFolders(sourceDir, sourceFolders, projectPath) {
+    sourceFolders.forEach((folder) => {
+      const sourceFolder = path.join(sourceDir, folder);
+      const destinationFolder = path.join(projectPath, folder);
+      fs.cpSync(sourceFolder, destinationFolder, { recursive: true });
+    });
+  }
+
   writePackageJson(
     templateSourceDir,
     projectName,
     projectPath,
-    projectDescription
+    projectDescription,
+    buildTools,
+    buildToolsSettings
   ) {
     const packageJson = JSON.parse(
       fs.readFileSync(path.join(templateSourceDir, `package.json`), "utf-8")
@@ -140,10 +189,41 @@ export default class CreateProject {
     packageJson.name = projectName;
     packageJson.description = projectDescription;
 
+    this.addBuildToolsToPackageJson(
+      packageJson,
+      buildTools,
+      buildToolsSettings
+    );
+
     fs.writeFileSync(
       path.join(projectPath, "package.json"),
       JSON.stringify(packageJson, null, 2)
     );
+  }
+
+  addBuildToolsToPackageJson(packageJson, buildTools, buildToolsSettings) {
+    if (buildTools.includes("vite")) {
+      packageJson.devDependencies.vite = buildToolsSettings.vite.version;
+      packageJson.scripts = {
+        ...packageJson.scripts,
+        ...buildToolsSettings.vite.scripts,
+      };
+    }
+
+    if (buildTools.includes("postcss")) {
+      packageJson.devDependencies["postcss-cli"] =
+        buildToolsSettings["postcss-cli"].version;
+
+      packageJson.scripts = {
+        ...packageJson.scripts,
+        ...buildToolsSettings["postcss-cli"].scripts,
+      };
+
+      if (!buildTools.includes("vite")) {
+        packageJson.devDependencies.postcss =
+          buildToolsSettings.postcss.version;
+      }
+    }
   }
 
   installPackageJson(projectPath) {

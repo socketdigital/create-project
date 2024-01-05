@@ -8,8 +8,8 @@
     "create-project": "./create-project/create-project.js"
   },
   "scripts": {
-    "build:watch": "rollup --config --watch ",
-    "build": "rollup --config"
+    "create-project:build": "rollup --config",
+    "create-project:build:watch": "rollup --config --watch "
   },
   "repository": {
     "type": "git",

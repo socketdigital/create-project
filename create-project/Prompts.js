@@ -22,32 +22,26 @@ export default class Prompts {
     },
   };
 
-  whichTemplatePrompt = {
-    type: "select",
-    name: "template",
-    message: "Pick a project template",
-    onRender(kleur) {
-      this.msg = kleur.cyan("Pick a project template");
-    },
+  buildToolsPrompt = {
+    type: "multiselect",
+    name: "buildTools",
+    message: "Build tools",
     choices: [
-      {
-        title: "No-Build Project",
-        description: "A project template with no build system",
-        value: "no-build-project",
-      },
-      {
-        title: "Vite Project",
-        description: "An project template with Vite",
-        value: "vite-project",
-      },
+      { title: "CSS (postCSS cli)", value: "postcss", selected: true },
+      { title: "Javascript (Vite)", value: "vite", selected: true },
     ],
-    initial: 0,
+    onRender(kleur) {
+      this.msg = kleur.cyan("Build tools");
+    },
+    max: 2,
+    hint: "- Space to select. Return to submit",
   };
+
   constructor() {}
 
   async promptForCurrentDirectory() {
     this.questions.push(this.projectDescriptionPrompt);
-    this.questions.push(this.whichTemplatePrompt);
+    this.questions.push(this.buildToolsPrompt);
 
     await this.handlePrompts();
     return this.prompts;
@@ -58,7 +52,7 @@ export default class Prompts {
 
     this.questions.push(this.projectNamePrompt);
     this.questions.push(this.projectDescriptionPrompt);
-    this.questions.push(this.whichTemplatePrompt);
+    this.questions.push(this.buildToolsPrompt);
 
     await this.handlePrompts();
     return this.prompts;
