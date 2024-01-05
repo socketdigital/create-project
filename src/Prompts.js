@@ -31,9 +31,9 @@ export default class Prompts {
     },
     choices: [
       {
-        title: "Basic Project",
-        description: "A basic project template",
-        value: "basic-project",
+        title: "No-Build Project",
+        description: "A project template with no build system",
+        value: "no-build-project",
       },
       {
         title: "Vite Project",

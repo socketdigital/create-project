@@ -4,7 +4,7 @@ import Files from "./Files.js";
 
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "url";
+import { fileURLToPath } from "node:url";
 
 import kleur from "kleur";
 import spawn from "cross-spawn";
@@ -13,7 +13,7 @@ export default class CreateProject {
   constructor() {
     this.targetDir = "";
     this.projectName = "";
-    this.templateName = "basic-project";
+    this.templateName = "no-build-project";
   }
 
   async create() {
@@ -81,16 +81,7 @@ export default class CreateProject {
   _createProject(projectName, templateName, projectDescription, projectPath) {
     this.exitIfProjectExists(projectName);
 
-    console.log(
-      "\n",
-      kleur.yellow(`Creating ${templateName}`),
-      "\n",
-      kleur.yellow(`Project name: ${projectName}`),
-      "\n",
-      kleur.yellow(`Directory:    ${projectName}`)
-    );
-
-    const templateSourceDir = `${this.getParentDirname()}/${templateName}`;
+    const templateSourceDir = `${this.getProjectDirname()}/${templateName}`;
 
     Files.makeDir(projectPath);
     this.copyTemplateDirectory(templateSourceDir, projectPath, templateName);
@@ -114,20 +105,20 @@ export default class CreateProject {
     }
   }
 
-  getParentDirname() {
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = path.dirname(__filename);
-    const __parentDir = path.resolve(__dirname, "..");
-    return __parentDir;
+  getProjectDirname() {
+    const filename = fileURLToPath(import.meta.url);
+    const dirname = path.dirname(filename);
+    return dirname;
   }
 
   copyTemplateDirectory(templateSourceDir, projectPath, templateName) {
     console.log(
       "\n",
-      kleur.blue(`Copying ${templateName}`),
+      kleur.blue(`Creating ${templateName}`),
       "\n",
-      kleur.blue(`to ${projectPath}`)
+      kleur.blue(`in ${projectPath}`)
     );
+
     fs.cpSync(templateSourceDir, projectPath, { recursive: true });
 
     fs.renameSync(
@@ -192,7 +183,8 @@ export default class CreateProject {
       "\n",
       kleur.green(`Created project ${projectName}`),
       "\n",
-      kleur.green(`in current directory.`)
+      kleur.green(`in current directory.`),
+      "\n"
     );
   }
 }
