@@ -1,0 +1,32 @@
+/* resize-me */
+
+:host(resize-me) {
+  /* Theme variables
+--border
+ */
+
+  --_resize-width: var(--resize-width, 60vw);
+  --_resize-min-width: var(--resize-min-width, 12ch);
+  --_resize-min-height: var(--resize-min-height, 120px);
+  --_resize-height: var(--resize-height, 300px);
+
+  display: block;
+  width: fit-content;
+  margin-inline: auto;
+}
+
+:host(resize-me) article {
+  display: grid;
+  overflow: scroll;
+  resize: both;
+  width: var(--_resize-width);
+  min-width: var(--_resize-min-width);
+  min-height: var(--_resize-min-height);
+  height: var(--_resize-height);
+  border: var(--border);
+}
+
+:host(resize-me) footer {
+  display: flex;
+  justify-content: flex-end;
+}

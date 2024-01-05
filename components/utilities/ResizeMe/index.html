@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resize me</title>
+  </head>
+  <body>
+    <resize-me>
+      <template shadowrootmode="open">
+        <link rel="stylesheet" href="resize-me.css" />
+        <section>
+          <article><slot></slot></article>
+          <footer>Resize me ⬆</footer>
+        </section>
+      </template>
+      <div>Resize me!</div>
+    </resize-me>
+  </body>
+</html>

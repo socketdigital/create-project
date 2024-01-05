@@ -1,0 +1,17 @@
+<h1>Sample HTML with Web Component</h1>
+
+<sample-component>
+  <template shadowrootmode="open">
+    <style>
+      ::slotted(p) {
+        color: red;
+      }
+    </style>
+    <slot></slot>
+  </template>
+  <p>Red paragraph in sample-with-web-component.html.</p>
+</sample-component>
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+</ul>

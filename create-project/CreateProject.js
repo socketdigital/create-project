@@ -12,6 +12,7 @@ import spawn from "cross-spawn";
 export default class CreateProject {
   constructor() {
     this.targetDir = "";
+    this.defaultTargetDir = "new-project";
     this.projectName = "";
     this.templateName = "project-template";
     this.buildTools = [];
@@ -34,7 +35,7 @@ export default class CreateProject {
   }
 
   async create() {
-    this.args = new Args();
+    this.args = new Args(this.defaultTargetDir);
 
     if (this.args.args.targetDir === ".") {
       this._createProjectFromCurrentDirectory();

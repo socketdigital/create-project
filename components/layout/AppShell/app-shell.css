@@ -1,0 +1,100 @@
+/* app-shell */
+
+/* Theme variables
+--text
+--surface
+--padding-inline
+--padding-block
+ */
+
+:host(app-shell) {
+  --_sidebar-display: block;
+  --_inspector-display: block;
+
+  display: grid;
+  container-type: size;
+  container-name: app-shell;
+  height: 100%;
+  width: 100%;
+}
+
+:host(app-shell) section {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template: auto 1fr auto / auto 1fr auto;
+  grid-template-areas:
+    "header header header"
+    "sidebar canvas inspector"
+    "footer footer footer";
+}
+
+:host(app-shell[data-area-hidden="sidebar"]) section {
+  --_sidebar-display: none;
+  grid-template: auto 1fr auto / 1fr auto;
+  grid-template-areas:
+    "header header"
+    "canvas inspector"
+    "footer footer";
+}
+
+:host(app-shell[data-area-hidden="inspector"]) section {
+  --_inspector-display: none;
+  grid-template: auto 1fr auto / auto 1fr;
+  grid-template-areas:
+    "header header"
+    "sidebar canvas"
+    "footer footer";
+}
+
+:host(app-shell[data-area-hidden="both"]) section {
+  --_sidebar-display: none;
+  --_inspector-display: none;
+  grid-template: auto 1fr auto / 1fr;
+  grid-template-areas:
+    "header"
+    "canvas"
+    "footer";
+}
+
+@container app-shell (max-width: 400px) {
+  :host(app-shell) section {
+    --_sidebar-display: none;
+    --_inspector-display: none;
+    grid-template: auto 1fr auto / 1fr;
+    grid-template-areas:
+      "header"
+      "canvas"
+      "footer";
+  }
+}
+
+:host(app-shell) ::slotted(*) {
+  display: block;
+  padding-inline: var(--padding-inline);
+  padding-block: var(--padding-block);
+  background-color: var(--surface);
+  color: var(--text);
+}
+
+:host(app-shell) ::slotted(header) {
+  grid-area: header;
+}
+
+:host(app-shell) ::slotted(sidebar-area) {
+  display: var(--_sidebar-display, block);
+  grid-area: sidebar;
+}
+
+:host(app-shell) ::slotted(canvas-area) {
+  grid-area: canvas;
+}
+
+:host(app-shell) ::slotted(inspector-area) {
+  display: var(--_inspector-display);
+  grid-area: inspector;
+}
+
+:host(app-shell) ::slotted(footer) {
+  grid-area: footer;
+}

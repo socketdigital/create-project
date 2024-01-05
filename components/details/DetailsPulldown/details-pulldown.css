@@ -1,0 +1,81 @@
+/* details-down */
+
+/* Theme variables
+--text
+--surface
+--padding-inline-small
+--padding-block-small
+--border
+--box-shadow
+ */
+
+:host(details-pulldown) details > summary {
+  cursor: pointer;
+  position: relative;
+}
+
+:host(details-pulldown) details {
+  position: relative;
+  display: inline-block;
+}
+
+:host(details-pulldown) .pull-down {
+  position: absolute;
+  left: 0;
+  right: unset;
+  z-index: 100;
+}
+
+:host(details-pulldown[data-position="left"]) .pull-down {
+  left: 0;
+  right: unset;
+}
+
+:host(details-pulldown[data-position="right"]) .pull-down {
+  left: unset;
+  right: 0;
+}
+
+:host(details-pulldown) [open] > summary:before {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 80;
+  display: block;
+  cursor: default;
+  content: " ";
+}
+
+:host(details-pulldown) details > summary {
+  color: var(--text);
+  background-color: var(--surface);
+  padding-inline: var(--padding-inline-small);
+  padding-block: var(--padding-block-small);
+}
+
+:host(details-pulldown) .pull-down[data-color-scheme="light"] {
+  --text: var(--text-light);
+  --surface: var(--surface-light);
+}
+
+:host(details-pulldown) .pull-down[data-color-scheme="dark"] {
+  --text: var(--text-dark);
+  --surface: var(--surface-dark);
+}
+
+:host(details-pulldown) .pull-down[data-color-scheme="custom"] {
+  --text: var(--text-custom);
+  --surface: var(--surface-custom);
+}
+
+:host(details-pulldown) .pull-down {
+  color: var(--text);
+  background-color: var(--surface);
+  border: var(--border);
+  min-width: 200px;
+  padding-inline: var(--padding-inline-small);
+  padding-block: var(--padding-block-small);
+  box-shadow: var(--box-shadow);
+}

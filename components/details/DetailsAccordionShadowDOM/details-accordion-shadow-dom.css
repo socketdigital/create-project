@@ -1,0 +1,15 @@
+/* details-accordion-shadow-dom */
+
+:host(details-accordion-shadow-dom) {
+  display: block;
+  padding: 1em;
+}
+
+/* https://css-tricks.com/two-issues-styling-the-details-element-and-how-to-solve-them/ */
+:host(details-accordion-shadow-dom) details > summary {
+  cursor: pointer;
+}
+
+:host(details-accordion-shadow-dom) details summary > * {
+  display: inline;
+}

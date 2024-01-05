@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-hidden-until-imports-imported>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Content Grid</title>
+    <link rel="stylesheet" href="../../../public/style.css" />
+    <link href="../../../public/prism/prism.css" rel="stylesheet" />
+    <script type="importmap">
+      {
+        "imports": {
+          "components/": "../../../components/"
+        }
+      }
+    </script>
+    <script type="module">
+      import { ImportMarkdown } from "components/imports/ImportMarkdown/ImportMarkdown.js";
+      customElements.define("import-markdown", ImportMarkdown);
+    </script>
+  </head>
+  <body>
+    <import-markdown
+      src="readme.md"
+      data-visible-when-imported
+    ></import-markdown>
+    <content-grid>
+      <template shadowrootmode="open">
+        <link rel="stylesheet" href="content-grid.css" />
+        <section>
+          <slot></slot>
+        </section>
+      </template>
+      <content-area data-color-scheme="dark">
+        <header style="grid-column: wide-width">
+          <h2>Heading area</h2>
+          <p>A wide-width width paragraph.</p>
+        </header>
+      </content-area>
+      <content-area>
+        <header style="grid-column: full-width">
+          <h2>Full Width Heading</h2>
+          <p>A full width paragraph.</p>
+        </header>
+        <article style="grid-column: wide-width">
+          <h2>Wide Width Heading</h2>
+          <p>A wide-width width paragraph.</p>
+        </article>
+        <footer style="grid-column: content-width">
+          <h2>Content Width Heading</h2>
+          <p>A content width paragraph.</p>
+        </footer>
+      </content-area>
+      <content-area data-color-scheme="custom">
+        <header style="grid-column: full-width">
+          <h2>Full Width Heading</h2>
+          <p>A full width paragraph.</p>
+        </header>
+      </content-area>
+      <content-area>
+        <article style="grid-column: wide-width">
+          <h2>Wide Width Heading</h2>
+          <p>A wide-width width paragraph.</p>
+        </article>
+      </content-area>
+      <content-area data-color-scheme="custom">
+        <header style="grid-column: content-width">
+          <h2>Content Width Heading</h2>
+          <p>A content width paragraph.</p>
+        </header>
+      </content-area>
+      <content-area>
+        <header
+          style="
+            grid-column: content-width;
+            background-color: var(--surface-custom);
+          "
+        >
+          <h2>Content Width Heading</h2>
+          <p>A content width paragraph.</p>
+        </header>
+      </content-area>
+      <content-area data-color-scheme="dark">
+        <footer style="grid-column: wide-width">
+          <h2>Footer area</h2>
+          <p>A wide-width width paragraph.</p>
+        </footer>
+      </content-area>
+    </content-grid>
+
+    <script src="../../../assets/prism/prism.js"></script>
+  </body>
+</html>

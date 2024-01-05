@@ -1,0 +1,51 @@
+/* card-grid */
+
+/* Theme variables
+--text
+--surface
+--gap
+--box-shadow
+ */
+
+:host(card-grid) {
+  --card-column-min-width: 15em;
+}
+
+:host(card-grid) section {
+  overflow-x: auto;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--card-column-min-width), 1fr)
+  );
+  grid-gap: var(--gap);
+
+  padding-inline: var(--padding-inline);
+  padding-block: var(--padding-block);
+}
+
+:host(card-grid) ::slotted(card-item) {
+  display: block;
+  padding-inline: var(--padding-inline);
+  padding-block: var(--padding-block);
+  color: var(--text);
+  border: var(--border);
+  background-color: var(--surface);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+:host(card-grid[data-layout="flex"]) section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-snap-type: inline mandatory;
+  scroll-behavior: smooth;
+}
+
+:host(card-grid[data-layout="flex"]) ::slotted(card-item) {
+  flex-shrink: 0;
+  flex-basis: var(--card-column-min-width);
+  scroll-snap-align: start;
+}

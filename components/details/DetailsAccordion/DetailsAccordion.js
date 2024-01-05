@@ -1,0 +1,35 @@
+import Components from "../../utilities/Components/components-class.js";
+
+export class DetailsAccordion extends HTMLElement {
+  constructor() {
+    super();
+    Components.attachShadow(this);
+    this._initAccordion();
+  }
+
+  _initAccordion() {
+    this.detailsElements = this.querySelectorAll(":scope > details");
+
+    this.detailsElements.forEach((element) => {
+      const summaryElement = element.querySelector("summary");
+      if (summaryElement) {
+        summaryElement.addEventListener("click", (event) => {
+          this._handleSummaryClick(event);
+        });
+      }
+    });
+  }
+
+  _handleSummaryClick(event) {
+    event.preventDefault();
+
+    const parentDetailsElement = event.target.parentElement;
+    parentDetailsElement.toggleAttribute("open");
+
+    this.detailsElements.forEach((detailsElement) => {
+      if (detailsElement !== parentDetailsElement) {
+        detailsElement.removeAttribute("open");
+      }
+    });
+  }
+}

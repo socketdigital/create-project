@@ -1,0 +1,40 @@
+:root {
+  /* color scheme */
+  color-scheme: light dark;
+  --text-light: black;
+  --surface-light: white;
+  --text-dark: yellow;
+  --surface-dark: black;
+  --text-custom: red;
+  --surface-custom: lightblue;
+  --text: var(--text-light);
+  --surface: var(--surface-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --text: var(--text-dark);
+    --surface: var(--surface-dark);
+  }
+}
+
+[data-color-scheme="light"] {
+  --text: var(--text-light);
+  --surface: var(--surface-light);
+}
+
+[data-color-scheme="dark"] {
+  --text: var(--text-dark);
+  --surface: var(--surface-dark);
+}
+
+[data-color-scheme="custom"] {
+  --text: var(--text-custom);
+  --surface: var(--surface-custom);
+}
+
+body {
+  color: var(--text);
+  background-color: var(--surface);
+}

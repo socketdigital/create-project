@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" data-hidden-until-imports-imported>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Font Scheme Select</title>
+    <link rel="stylesheet" href="../../../public/style.css" />
+    <link href="../../../public/prism/prism.css" rel="stylesheet" />
+    <script src="../set-color-scheme-from-local-storage.js"></script>
+    <script type="module">
+      import { ImportMarkdown } from "../../../components/imports/ImportMarkdown/ImportMarkdown.js";
+      import { FontSchemeSelect } from "../../../components/theming/FontSchemeSelect/FontSchemeSelect.js";
+      customElements.define("import-markdown", ImportMarkdown);
+      customElements.define("font-scheme-select", FontSchemeSelect);
+    </script>
+  </head>
+  <body>
+    <import-markdown
+      src="readme.md"
+      data-visible-when-imported
+    ></import-markdown>
+
+    <font-scheme-select>
+      <template shadowrootmode="open">
+        <link rel="stylesheet" href="font-scheme-select.css" />
+        <label for="font-scheme-select">Font scheme:</label>
+        <select name="fontScheme" id="font-scheme-select">
+          <option value="--font-family-system-ui">system-ui</option>
+          <option value="--font-family-transitional">transitional</option>
+          <option value="--font-family-old-style">old-style</option>
+          <option value="--font-family-humanist">humanist</option>
+          <option value="--font-family-geometric-humanist">
+            geometric-humanist
+          </option>
+          <option value="--font-family-classical-humanist">
+            classical-humanist
+          </option>
+          <option value="--font-family-neo-grotesque">neo-grotesque</option>
+          <option value="--font-family-monospace-slab-serif">
+            monospace-slab-serif
+          </option>
+          <option value="--font-family-monospace-code">monospace-code</option>
+          <option value="--font-family-industrial">industrial</option>
+          <option value="--font-family-rounded-sans">rounded-sans</option>
+          <option value="--font-family-slab-serif">slab-serif</option>
+          <option value="--font-family-antique">antique</option>
+          <option value="--font-family-didone">didone</option>
+          <option value="--font-family-handwritten">handwritten</option>
+        </select>
+      </template>
+    </font-scheme-select>
+
+    <script src="../../../assets/prism/prism.js"></script>
+  </body>
+</html>

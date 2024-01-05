@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" data-hidden-until-imports-imported>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Import Markdown</title>
+    <link href="../../../public/prism/prism.css" rel="stylesheet" />
+    <style>
+      html[data-hidden-until-imports-imported] {
+        visibility: hidden;
+      }
+      import-markdown[data-status="import failed"]::before {
+        content: attr(src) " not found";
+      }
+    </style>
+  </head>
+  <body>
+    <script type="module">
+      import { ImportMarkdown } from "./importMarkdown.js";
+      customElements.define("import-markdown", ImportMarkdown);
+    </script>
+    <h2>imports/readme.md</h2>
+    <import-markdown src="../readme.md"></import-markdown>
+    <hr />
+    <import-markdown src="markdown/sample.md"></import-markdown>
+    <import-markdown
+      src="markdown/sample-with-embedded-html.md"
+    ></import-markdown>
+    <import-markdown src="markdown/sample-gfm.md"></import-markdown>
+    <import-markdown
+      src="markdown/sample-with-code.md"
+      data-visible-when-imported
+    ></import-markdown>
+    <script src="../../../assets/prism/prism.js"></script>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Grid</title>
+    <link rel="stylesheet" href="../../../public/style.css" />
+    <link href="../../../public/prism/prism.css" rel="stylesheet" />
+    <script type="module">
+      import { ImportMarkdown } from "../../../components/imports/ImportMarkdown/ImportMarkdown.js";
+      customElements.define("import-markdown", ImportMarkdown);
+    </script>
+  </head>
+  <body>
+    <import-markdown
+      src="readme.md"
+      data-visible-when-imported
+    ></import-markdown>
+    <card-grid>
+      <template shadowrootmode="open">
+        <link rel="stylesheet" href="card-grid.css" />
+        <style>
+          :host(card-grid) {
+            text-wrap: balance;
+            --card-column-min-width: 20em;
+          }
+        </style>
+        <section>
+          <slot></slot>
+        </section>
+      </template>
+      <card-item data-color-scheme="custom">
+        <h2>Web component-oriented design principles</h2>
+        <ul>
+          <li>Design HTML-first</li>
+          <li>Design-in theming &amp; accessibility</li>
+          <li>Encapsulate &amp; colocate</li>
+          <li>Style with CSS variables</li>
+          <li>Stay simple, clean &amp; SOLID</li>
+        </ul>
+      </card-item>
+
+      <card-item>
+        <h2>Design HTML-first</h2>
+        <ul>
+          <li>Components are HTML objects with style</li>
+          <li>Build with a semantic foundation</li>
+          <li>HTML, CSS &amp; JS: Use the right tool for the job</li>
+        </ul>
+      </card-item>
+
+      <card-item>
+        <h2>Design-in theming &amp; accessibility</h2>
+        <ul>
+          <li>Theme variables</li>
+          <li>Semantic HTML</li>
+          <li>ARIA attributes</li>
+        </ul>
+      </card-item>
+
+      <card-item>
+        <h2>Encapsulate &amp; colocate</h2>
+        <ul>
+          <li>Keep component parts together</li>
+          <li>Use the DOM: plain, shadow &amp; light</li>
+          <li>Use the CSS cascade &amp; inheritence</li>
+        </ul>
+      </card-item>
+
+      <card-item>
+        <h2>Style with CSS variables</h2>
+        <ul>
+          <li>Favor custom properties over custom classes</li>
+          <li>Favor semantic HTML elements over DIV elements</li>
+          <li>Use attributes for state changes</li>
+        </ul>
+      </card-item>
+
+      <card-item>
+        <h2>Simple, clean &amp; SOLID</h2>
+        <ul>
+          <li>Follow the classic architectural best practices</li>
+          <li>Simple components: short methods &amp; style blocks</li>
+          <li>Design for extensibility</li>
+          <li>Favor patterns over pets</li>
+        </ul>
+      </card-item>
+    </card-grid>
+    <script src="../../../assets/prism/prism.js"></script>
+  </body>
+</html>

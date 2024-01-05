@@ -1,0 +1,5 @@
+/* details-accordion */
+
+:host(details-accordion) {
+  display: block;
+}

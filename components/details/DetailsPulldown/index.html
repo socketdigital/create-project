@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-hidden-until-imports-imported>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Details Pulldown</title>
+    <link rel="stylesheet" href="../../../public/style.css" />
+    <link href="../../../public/prism/prism.css" rel="stylesheet" />
+    <script type="importmap">
+      {
+        "imports": {
+          "components/": "../../../components/"
+        }
+      }
+    </script>
+    <script type="module">
+      import { ImportMarkdown } from "components/imports/ImportMarkdown/ImportMarkdown.js";
+      customElements.define("import-markdown", ImportMarkdown);
+    </script>
+  </head>
+  <body>
+    <import-markdown
+      src="readme.md"
+      data-visible-when-imported
+    ></import-markdown>
+    <details-pulldown>
+      <template shadowrootmode="open">
+        <link rel="stylesheet" href="details-pulldown.css" />
+        <details>
+          <summary>
+            Pull down default
+          </summary>
+          <div class="pull-down">
+            Pull down text.
+          </div>
+        </details>
+      </template>
+    </details-pulldown>
+    <details-pulldown data-position="left">
+      <template shadowrootmode="open">
+        <link rel="stylesheet" href="details-pulldown.css" />
+        <style>
+          :host(details-pulldown) details > summary {
+            --surface: var(--surface-custom);
+          }
+          :host(details-pulldown) .pull-down {
+            --surface: var(--surface-custom);
+          }
+        </style>
+        <details>
+          <summary>
+            Pull down left
+          </summary>
+          <div class="pull-down">
+            Pull down text
+          </div>
+        </details>
+      </template>
+    </details-pulldown>
+    <details-pulldown data-position="right" data-color-scheme="dark" >
+      <template shadowrootmode="open">
+        <link rel="stylesheet" href="details-pulldown.css" />
+        <details>
+          <summary>
+            Pull down Right
+          </summary>
+          <div class="pull-down">
+            Pull down text.
+          </div>
+        </details>
+      </template>
+    </details-pulldown>
+    <details-pulldown data-position="right" data-color-scheme="dark" >
+      <template shadowrootmode="open">
+        <link rel="stylesheet" href="details-pulldown.css" />
+        <details>
+          <summary>
+            Pull down Two Color
+          </summary>
+          <div class="pull-down" data-color-scheme="custom">
+            Pull down text.
+          </div>
+        </details>
+      </template>
+    </details-pulldown>
+    <p>Some text after the details pulldown</p>
+  </body>
+    <script src="../../../assets/prism/prism.js"></script>
+  </body>
+</html>

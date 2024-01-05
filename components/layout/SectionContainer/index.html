@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-hidden-until-imports-imported>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Section Container</title>
+    <link rel="stylesheet" href="../../../public/style.css" />
+    <link href="../../../public/prism/prism.css" rel="stylesheet" />
+    <script type="importmap">
+      {
+        "imports": {
+          "components/": "../../../components/"
+        }
+      }
+    </script>
+    <script type="module">
+      import { ImportMarkdown } from "components/imports/ImportMarkdown/ImportMarkdown.js";
+      customElements.define("import-markdown", ImportMarkdown);
+    </script>
+  </head>
+  <body>
+    <import-markdown
+      src="readme.md"
+      data-visible-when-imported
+    ></import-markdown>
+    <section-container data-color-scheme="dark">
+      <template shadowrootmode="open">
+        <link rel="stylesheet" href="section-container.css" />
+        <header>
+          <slot></slot>
+        </header>
+      </template>
+      <h2>Header</h2>
+      <p>Max width of --section-width.</p>
+    </section-container>
+    <section-container>
+      <template shadowrootmode="open">
+        <link rel="stylesheet" href="section-container.css" />
+        <style>
+          :host(section-container) {
+            --section-container-surface: lightblue;
+          }
+        </style>
+        <section>
+          <slot></slot>
+        </section>
+      </template>
+      <h2>Section Width</h2>
+      <p>Max width of --section-width.</p>
+    </section-container>
+    <section-container data-width="wide">
+      <template shadowrootmode="open">
+        <link rel="stylesheet" href="section-container.css" />
+        <style>
+          :host(section-container) {
+            --section-container-surface: springgreen;
+          }
+        </style>
+        <section>
+          <slot></slot>
+        </section>
+      </template>
+      <h2>Wide Width</h2>
+      <p>Max width of --section-wide-width.</p>
+    </section-container>
+    <section-container data-width="content">
+      <template shadowrootmode="open">
+        <link rel="stylesheet" href="section-container.css" />
+
+        <section>
+          <slot></slot>
+        </section>
+      </template>
+      <h2>Content Width</h2>
+      <p>Max width of --section-content-width.</p>
+    </section-container>
+    <section-container>
+      <template shadowrootmode="open">
+        <link rel="stylesheet" href="section-container.css" />
+        <style>
+          :host(section-container) {
+            --text: var(--text-dark);
+            --surface: var(--surface-dark);
+          }
+        </style>
+        <footer>
+          <slot></slot>
+        </footer>
+      </template>
+      <h2>Footer</h2>
+      <p>Max width of --section-width.</p>
+    </section-container>
+    <script src="../../../assets/prism/prism.js"></script>
+  </body>
+</html>

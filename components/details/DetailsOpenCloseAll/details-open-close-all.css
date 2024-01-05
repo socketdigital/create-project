@@ -1,0 +1,15 @@
+/* details-open-close-all */
+
+:host(details-open-close-all) {
+  display: block;
+  padding: 1em;
+}
+
+:host(details-open-close-all) details > summary {
+  cursor: pointer;
+}
+
+:host(details-open-close-all) button {
+  border: none;
+  background-color: transparent;
+}

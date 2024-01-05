@@ -1,0 +1,45 @@
+/* section-container */
+
+:host(section-container) {
+  /* Theme variables
+--text
+--surface
+--padding-inline
+--padding-block
+
+Base variables
+--body-margin
+ */
+
+  --section-container-surface: var(--surface, unset);
+  --_section-width: var(--section-width, 1200px);
+  --_section-wide-width: var(--section-wide-width, 1000px);
+  --_section-content-width: var(--section-content-width, 80ch);
+
+  display: block;
+  margin-inline: calc(var(--body-margin) * -1);
+  background-color: var(--section-container-surface);
+  padding-inline: var(--padding-inline);
+  padding-block: var(--padding-block);
+}
+
+:host(section-container) section,
+:host(section-container) header,
+:host(section-container) footer {
+  margin: auto;
+  color: var(--text);
+  background-color: var(--surface);
+  max-width: var(--_section-width);
+}
+
+:host(section-container[data-width="content"]) section,
+:host(section-container[data-width="content"]) header,
+:host(section-container[data-width="content"]) footer {
+  max-width: var(--_section-content-width);
+}
+
+:host(section-container[data-width="wide"]) section,
+:host(section-container[data-width="wide"]) header,
+:host(section-container[data-width="wide"]) footer {
+  max-width: var(--_section-wide-width);
+}

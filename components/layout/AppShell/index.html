@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-hidden-until-imports-imported>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App Shell</title>
+    <link rel="stylesheet" href="../../../public/style.css" />
+    <link href="../../../public/prism/prism.css" rel="stylesheet" />
+    <script type="importmap">
+      {
+        "imports": {
+          "components/": "../../../components/"
+        }
+      }
+    </script>
+    <script type="module">
+      import { ImportMarkdown } from "components/imports/ImportMarkdown/ImportMarkdown.js";
+      customElements.define("import-markdown", ImportMarkdown);
+    </script>
+  </head>
+  <body>
+    <import-markdown
+      src="readme.md"
+      data-visible-when-imported
+    ></import-markdown>
+    <h2>Example App Shell</h2>
+    <resize-me>
+      <template shadowrootmode="open">
+        <link rel="stylesheet" href="../../utilities/resizeMe/resize-me.css" />
+        <section>
+          <article><slot></slot></article>
+          <footer>Resize me ⬆</footer>
+        </section>
+      </template>
+      <app-shell>
+        <template shadowrootmode="open">
+          <style>
+            :host ::slotted(header),
+            :host ::slotted(footer) {
+              --text: var(--text-dark);
+              --surface: var(--surface-dark);
+            }
+            :host ::slotted(sidebar-area),
+            :host ::slotted(inspector-area) {
+              --text: var(--text-custom);
+              --surface: var(--surface-custom);
+            }
+          </style>
+          <link rel="stylesheet" href="./app-shell.css" />
+          <section><slot></slot></section>
+        </template>
+        <header>Header</header>
+        <sidebar-area>Sidebar</sidebar-area>
+        <canvas-area>Canvas</canvas-area>
+        <inspector-area>Inspector</inspector-area>
+        <footer>Footer</footer>
+      </app-shell>
+    </resize-me>
+
+    <script src="../../../assets/prism/prism.js"></script>
+  </body>
+</html>

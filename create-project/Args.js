@@ -2,15 +2,10 @@ import minimist from "minimist";
 import Files from "./Files.js";
 
 export default class Args {
-  constructor() {
+  constructor(defaultTargetDir) {
     this.args = {};
-    this.defaultTargetDir = "new-project";
-    this.options = {
-      string: ["template"],
-      alias: {
-        template: "t",
-      },
-    };
+    this.defaultTargetDir = defaultTargetDir;
+    this.options = {};
 
     this.parse();
   }

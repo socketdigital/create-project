@@ -1,0 +1,43 @@
+<section-container data-color-scheme="dark">
+  <template shadowrootmode="open">
+    <link rel="stylesheet" href="../public/components.css" />
+    <style>
+      header {
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+    <header>
+      <slot></slot>
+    </header>
+  </template>
+
+  <a href="/">Declarative Web Components</a>
+  <nav>
+    <a href="/docs/">Components</a>
+    <a href="/apps.html">Apps</a>
+    <a href="/learn.html">Learn</a>
+  </nav>
+
+  <details-pulldown data-position="right" data-color-scheme="dark">
+    <template shadowrootmode="open">
+      <link rel="stylesheet" href="../public/components.css" />
+      <details>
+        <summary>Theme</summary>
+        <div class="pull-down" data-color-scheme="custom">
+          <color-scheme-select>
+            <template shadowrootmode="open">
+              <label for="color-scheme-select">Color scheme:</label>
+              <select name="colorScheme" id="color-scheme-select">
+                <option value="auto">Auto (system preference)</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+                <option value="custom">Custom colors</option>
+              </select>
+            </template>
+          </color-scheme-select>
+        </div>
+      </details>
+    </template>
+  </details-pulldown>
+</section-container>

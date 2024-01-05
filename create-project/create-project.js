@@ -320,15 +320,10 @@ class Files {
 }
 
 class Args {
-  constructor() {
+  constructor(defaultTargetDir) {
     this.args = {};
-    this.defaultTargetDir = "new-project";
-    this.options = {
-      string: ["template"],
-      alias: {
-        template: "t",
-      },
-    };
+    this.defaultTargetDir = defaultTargetDir;
+    this.options = {};
 
     this.parse();
   }
@@ -7430,6 +7425,7 @@ var spawn$1 = /*@__PURE__*/getDefaultExportFromCjs(crossSpawnExports);
 class CreateProject {
   constructor() {
     this.targetDir = "";
+    this.defaultTargetDir = "new-project";
     this.projectName = "";
     this.templateName = "project-template";
     this.buildTools = [];
@@ -7452,7 +7448,7 @@ class CreateProject {
   }
 
   async create() {
-    this.args = new Args();
+    this.args = new Args(this.defaultTargetDir);
 
     if (this.args.args.targetDir === ".") {
       this._createProjectFromCurrentDirectory();

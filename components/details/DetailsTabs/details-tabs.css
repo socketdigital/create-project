@@ -1,0 +1,30 @@
+/* details-tabs */
+
+:host(details-tabs) {
+  /* Theme variables
+--text
+--surface
+--padding-inline
+--gap
+ */
+
+  --details-tabs-height: 200px;
+  --_details-tabs-header-text: var(--details-tabs-header-text);
+  --_details-tabs-header-surface: var(--details-tabs-header-surface);
+
+  display: block;
+  width: 100%;
+  container-type: size;
+  container-name: details-tabs;
+  height: var(--details-tabs-height);
+  color: var(--text);
+  background-color: var(--surface);
+}
+
+:host(details-tabs) section {
+  display: flex;
+  padding-inline: var(--padding-inline);
+  gap: var(--gap);
+  color: var(--_details-tabs-header-text);
+  background-color: var(--_details-tabs-header-surface);
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" data-hidden-until-imports-imported>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Components</title>
+    <link rel="stylesheet" href="../public/style.css" />
+    <script src="../components/theming/set-color-scheme-from-local-storage.js"></script>
+  </head>
+
+  <body>
+    <script type="module" src="./main.js"></script>
+    <import-html src="../imports/page-header.html"></import-html>
+
+    <section-container>
+      <template shadowrootmode="open">
+        <link rel="stylesheet" href="../public/components.css" />
+        <section>
+          <slot></slot>
+        </section>
+      </template>
+      <h2>Guide</h2>
+    </section-container>
+
+    <import-html
+      src="../imports/page-footer.html"
+      data-visible-when-imported
+    ></import-html>
+  </body>
+</html>

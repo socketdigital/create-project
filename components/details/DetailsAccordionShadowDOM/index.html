@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-hidden-until-imports-imported>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Details Accordion Shadow DOM</title>
+    <link rel="stylesheet" href="../../../public/style.css" />
+    <link href="../../../public/prism/prism.css" rel="stylesheet" />
+    
+    <script type="importmap">
+      {
+        "imports": {
+          "components/": "../../../components/"
+        }
+      }
+    </script>
+    <script type="module">
+      import { ImportMarkdown } from "components/imports/ImportMarkdown/ImportMarkdown.js";
+      import { DetailsAccordionShadowDOM } from "components/details/DetailsAccordionShadowDOM/DetailsAccordionShadowDOM.js";
+
+      customElements.define("import-markdown", ImportMarkdown);
+      customElements.define("details-accordion-shadow-dom", DetailsAccordionShadowDOM);
+    </script>
+  </head>
+  <body>
+    <import-markdown
+      src="readme.md"
+      data-visible-when-imported
+    ></import-markdown>
+
+    <h2>Basic Details Accordion</h2>
+    <details-accordion-shadow-dom>
+      <template shadowrootmode="open">
+        <link rel="stylesheet" href="details-accordion-shadow-dom.css" />
+        <details>
+          <summary>Summary 1</summary>
+          Details content 1.
+        </details>
+        <details>
+          <summary>Summary 2</summary>
+          Details content 2.
+        </details>
+        <details>
+          <summary>Summary 3</summary>
+          Details content 3.
+        </details>
+      </template>
+    </details-accordion-shadow-dom>
+
+    <h2>Nested accordion</h2>
+    <details-accordion-shadow-dom>
+      <template shadowrootmode="open">
+        <link rel="stylesheet" href="details-accordion-shadow-dom.css" />
+        <slot></slot>
+      </template>
+      <details>
+        <summary>Summary no children</summary>
+        Details content no children.
+      </details>
+      <details>
+        <summary>Summary with children</summary>
+        <details-accordion-shadow-dom accordion>
+          <template shadowrootmode="open">
+            <link rel="stylesheet" href="details-accordion-shadow-dom.css" />
+            <details>
+              <summary>Nested summary 1</summary>
+              Nested details content 1.
+            </details>
+            <details>
+              <summary>Nested summary 2</summary>
+              Nested details content 2.
+            </details>
+          </template>
+        </details-accordion-shadow-dom>
+      </details>
+    </details-accordion-shadow-dom>
+  </body>
+
+    <script src="../../../assets/prism/prism.js"></script>
+  </body>
+</html>

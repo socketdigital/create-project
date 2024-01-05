@@ -1,0 +1,78 @@
+/* details-tabs-shadow-dom */
+
+:host(details-tabs-shadow-dom) {
+  /* Theme variables
+--text
+--surface
+--padding-inline
+--padding-block
+--gap
+ */
+
+  --details-tabs-height: 200px;
+  --_details-tabs-header-text: var(--details-tabs-header-text);
+  --_details-tabs-header-surface: var(--details-tabs-header-surface);
+
+  display: block;
+  width: 100%;
+  container-type: size;
+  container-name: details-tabs;
+  height: var(--details-tabs-height);
+  color: var(--text);
+  background-color: var(--surface);
+}
+
+:host(details-tabs-shadow-dom) section {
+  display: flex;
+  padding-inline: var(--padding-inline);
+  gap: var(--gap);
+  color: var(--_details-tabs-header-text);
+  background-color: var(--_details-tabs-header-surface);
+}
+
+/* SSS */
+
+:host(details-tabs-shadow-dom) :root {
+  --details-tabs-bar-height: auto;
+}
+
+:host(details-tabs-shadow-dom) details summary {
+  height: var(--details-tabs-bar-height);
+  /* line-height: 1em; */
+  padding-block: var(--padding-block);
+}
+
+:host(details-tabs-shadow-dom) {
+  overflow-y: auto;
+}
+
+:host(details-tabs-shadow-dom) .details-content {
+  position: fixed;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: calc(100cqb - var(--details-tabs-bar-height));
+  overflow-y: auto;
+
+  background-color: var(--surface-custom);
+  color: var(--text-custom);
+  padding-inline: var(--padding-inline);
+  padding-block: var(--padding-block);
+}
+
+:host(details-tabs-shadow-dom) details:not([open]) summary {
+  border-bottom: solid 2px transparent;
+}
+
+:host(details-tabs-shadow-dom) details[open] summary {
+  border-bottom: solid 2px black;
+}
+
+/* https://css-tricks.com/two-issues-styling-the-details-element-and-how-to-solve-them/ */
+:host(details-tabs-shadow-dom) details summary {
+  cursor: pointer;
+}
+
+:host(details-tabs-shadow-dom) details summary > * {
+  display: inline;
+}

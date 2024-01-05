@@ -1,0 +1,23 @@
+:root {
+  --body-margin: 1em;
+}
+
+body {
+  margin: var(--body-margin);
+}
+
+html[data-hidden-until-imports-imported] {
+  visibility: hidden;
+}
+import-html[data-status="import failed"]::before {
+  content: attr(src) " not found";
+}
+
+/* https://css-tricks.com/two-issues-styling-the-details-element-and-how-to-solve-them/ */
+details summary {
+  cursor: pointer;
+}
+
+details summary > * {
+  display: inline;
+}
