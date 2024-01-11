@@ -48,7 +48,10 @@ Put data-hidden-until-loaded attribute on the HTML element:
 And put data-visible-when-loaded attribute on the LAST html-import element on the page:
 
 ```html
-<import-html src="/imports/footer.html" data-visible-when-loaded></import-html>
+<import-html
+  source="/imports/footer.html"
+  data-visible-when-loaded
+></import-html>
 ```
 
 The html-import fetch calls will then be chained into an array of promises, and when they are all complete, the data-hidden-until-loaded attribute will be removed from the HTML element.

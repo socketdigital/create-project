@@ -4,19 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Details Accordion</title>
-    <link rel="stylesheet" href="../../../public/style.css" />
-    <link href="../../../public/prism/prism.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../assets/style.css" />
+    <link href="../../../assets/prism/prism.css" rel="stylesheet" />
     
-    <script type="importmap">
-      {
-        "imports": {
-          "components/": "../../../components/"
-        }
-      }
-    </script>
     <script type="module">
-      import { ImportMarkdown } from "components/imports/ImportMarkdown/ImportMarkdown.js";
-      import { DetailsAccordion } from "components/details/DetailsAccordion/DetailsAccordion.js";
+      import { ImportMarkdown } from "../../imports/ImportMarkdown/ImportMarkdown.js";
+      import { DetailsAccordion } from "./DetailsAccordion.js";
 
       customElements.define("import-markdown", ImportMarkdown);
       customElements.define("details-accordion", DetailsAccordion);
@@ -35,7 +28,7 @@
       
     </style> -->
     <import-markdown
-      src="readme.md"
+      source="readme.md"
       data-visible-when-imported
     ></import-markdown>
 

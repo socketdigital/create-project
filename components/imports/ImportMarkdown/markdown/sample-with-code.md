@@ -21,7 +21,7 @@ function sayHi(message) {
 ### HTML
 
 ```html
-<import-markdown src="markdown/sample.md"></import-markdown>
+<import-markdown source="markdown/sample.md"></import-markdown>
 <ul>
   <li>Item 1</li>
   <li>Item 2</li>

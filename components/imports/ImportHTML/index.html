@@ -4,18 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Import HTML</title>
-    <link href="../../../public/prism/prism.css" rel="stylesheet" />
+    <link href="../../../assets/prism/prism.css" rel="stylesheet" />
   </head>
   <body>
     <script type="module">
       import { ImportHTML } from "./importHTML.js";
       customElements.define("import-html", ImportHTML);
     </script>
-    <import-html src="html/sample.html"></import-html>
-    <import-html src="nonexistent-file.html"></import-html>
-    <import-html src="html/sample-with-code-blocks.html"></import-html>
+    <import-html source="html/sample.html"></import-html>
+    <import-html source="nonexistent-file.html"></import-html>
+    <import-html source="html/sample-with-code-blocks.html"></import-html>
     <import-html
-      src="html/sample-with-web-component.html"
+      source="html/sample-with-web-component.html"
       data-visible-when-imported
     ></import-html>
     <script src="../../../assets/prism/prism.js"></script>

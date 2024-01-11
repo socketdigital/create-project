@@ -4,16 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HTML Components</title>
-    <link rel="stylesheet" href="/public/style.css" />
-    <script src="./components/theming/set-color-scheme-from-local-storage.js"></script>
+    <link rel="stylesheet" href="/assets/style.css" />
+    <script>
+      (function setColorSchemeFromLocalStorage() {
+        const colorScheme = localStorage.getItem("colorscheme");
+        if (colorScheme) {
+          document.documentElement.setAttribute(
+            "data-color-scheme",
+            colorScheme
+          );
+        }
+      })();
+    </script>
   </head>
 
   <body>
     <script type="module" src="/main.js"></script>
-    <import-html src="/imports/home-header.html"></import-html>
+    <import-html source="/imports/home-header.html"></import-html>
     <section-container>
       <template shadowrootmode="open">
-        <link rel="stylesheet" href="/public/components.css" />
+        <link rel="stylesheet" href="/assets/components.css" />
         <section>
           <slot></slot>
         </section>
@@ -23,7 +33,7 @@
 
     <section-container data-color-scheme="custom">
       <template shadowrootmode="open">
-        <link rel="stylesheet" href="/public/components.css" />
+        <link rel="stylesheet" href="/assets/components.css" />
         <section>
           <slot></slot>
         </section>
@@ -31,7 +41,7 @@
       <h2>content</h2>
     </section-container>
     <import-html
-      src="/imports/home-footer.html"
+      source="/imports/home-footer.html"
       data-visible-when-imported
     ></import-html>
   </body>

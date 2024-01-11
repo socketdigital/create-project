@@ -10,7 +10,7 @@ import { matter } from "https://esm.sh/vfile-matter@5?bundle";
 import remarkGfm from "https://esm.sh/remark-gfm@4?bundle";
 
 export class ImportMarkdown extends HTMLElement {
-  static observedAttributes = ["src"];
+  static observedAttributes = ["source"];
 
   constructor() {
     super();
@@ -26,7 +26,7 @@ export class ImportMarkdown extends HTMLElement {
   async attributeChangedCallback(name, oldValue, newValue) {
     let fetchImportPromise;
 
-    if (name === "src") {
+    if (name === "source") {
       if (oldValue !== null) {
         fetchImportPromise = new Promise(
           this.fetchMarkdownFromSrcAttribute.bind(this)
@@ -42,12 +42,12 @@ export class ImportMarkdown extends HTMLElement {
     let markdown = "";
     let frontMatter = {};
 
-    if (!this.hasAttribute("src")) {
+    if (!this.hasAttribute("source")) {
       return resolve(true);
     }
 
     try {
-      const response = await fetch(this.getAttribute("src"));
+      const response = await fetch(this.getAttribute("source"));
       if (!response.ok) {
         throw new Error(response.statusText);
       }

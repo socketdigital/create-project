@@ -1,8 +1,8 @@
 # Imports
 
 ```html
-<import-html src="sample.html"></import-html>
-<import-markdown src="sample.md"></import-markdown>
+<import-html source="sample.html"></import-html>
+<import-markdown source="sample.md"></import-markdown>
 ```
 
 Uses [remark](https://remark.js.org/) and [prism.js](https://prismjs.com/).
@@ -12,8 +12,8 @@ Uses [remark](https://remark.js.org/) and [prism.js](https://prismjs.com/).
 To replace completely the import custom element when loaded, use the data-replace attribute:
 
 ```html
-<import-html src="sample.html" data-replace></import-html>
-<import-markdown src="sample.md" data-replace></import-markdown>
+<import-html source="sample.html" data-replace></import-html>
+<import-markdown source="sample.md" data-replace></import-markdown>
 ```
 
 If you don't use the data-replace attribute, after the initial load you can load a new import by changing the src attribute to another file.
@@ -34,9 +34,9 @@ The import fetch calls will then be chained into an array of promises, and when 
 <html lang="en" data-hidden-until-imports-imported>
   ...
   <body>
-    <import-html src="html/sample-with-code-blocks.html"></import-html>
+    <import-html source="html/sample-with-code-blocks.html"></import-html>
     <import-html
-      src="html/sample-with-web-component.html"
+      source="html/sample-with-web-component.html"
       data-visible-when-imported
     ></import-html>
   </body>

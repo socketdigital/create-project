@@ -1,14 +1,14 @@
 import Imports from "../imports-class.js";
 
 export class ImportHTML extends HTMLElement {
-  static observedAttributes = ["src"];
+  static observedAttributes = ["source"];
 
   constructor() {
     super();
   }
 
   async connectedCallback() {
-    console.log("ImportHTML");
+    console.log("async connectedCallback ImportHTML");
     this.fetchImportPromise = new Promise(
       this.fetchHTMLFromSrcAttribute.bind(this)
     );
@@ -18,7 +18,7 @@ export class ImportHTML extends HTMLElement {
   async attributeChangedCallback(name, oldValue, newValue) {
     let fetchImportPromise;
 
-    if (name === "src") {
+    if (name === "source") {
       if (oldValue !== null) {
         fetchImportPromise = new Promise(
           this.fetchHTMLFromSrcAttribute.bind(this)
@@ -32,12 +32,12 @@ export class ImportHTML extends HTMLElement {
   async fetchHTMLFromSrcAttribute(resolve, reject) {
     let html = "";
 
-    if (!this.hasAttribute("src")) {
+    if (!this.hasAttribute("source")) {
       return resolve(true);
     }
 
     try {
-      const response = await fetch(this.getAttribute("src"));
+      const response = await fetch(this.getAttribute("source"));
       if (!response.ok) {
         throw new Error(response.statusText);
       }
@@ -46,6 +46,8 @@ export class ImportHTML extends HTMLElement {
     } catch (error) {
       this.innerHTML = "";
       this.setAttribute("data-status", "import failed");
+      console.log("could not load", this.getAttribute("source"));
+
       return reject(error);
     }
 

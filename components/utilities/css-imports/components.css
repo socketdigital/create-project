@@ -9,7 +9,7 @@
 /* imports */
 
 /* interactivity */
-@import "../../../components/interactivity/IconButton/icon-button.css";
+/* @import "../../../components/interactivity/IconButton/icon-button.css"; */
 
 /* layout */
 @import "../../../components/layout/AppShell/app-shell.css";
@@ -18,7 +18,7 @@
 @import "../../../components/layout/SectionContainer/section-container.css";
 
 /* theming */
-@import "../../../components/theming/ColorSchemeSelect/color-scheme-select.css";
+/* @import "../../../components/theming/ColorSchemeSelect/color-scheme-select.css"; */
 
 /* utilities */
 @import "../../../components/utilities/ResizeMe/resize-me.css";

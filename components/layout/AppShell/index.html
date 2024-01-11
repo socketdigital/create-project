@@ -4,23 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>App Shell</title>
-    <link rel="stylesheet" href="../../../public/style.css" />
-    <link href="../../../public/prism/prism.css" rel="stylesheet" />
-    <script type="importmap">
-      {
-        "imports": {
-          "components/": "../../../components/"
-        }
-      }
-    </script>
+    <link rel="stylesheet" href="../../../assets/style.css" />
+    <link href="../../../assets/prism/prism.css" rel="stylesheet" />
     <script type="module">
-      import { ImportMarkdown } from "components/imports/ImportMarkdown/ImportMarkdown.js";
+      import { ImportMarkdown } from "../../imports/ImportMarkdown/ImportMarkdown.js";
       customElements.define("import-markdown", ImportMarkdown);
     </script>
   </head>
   <body>
     <import-markdown
-      src="readme.md"
+      source="readme.md"
       data-visible-when-imported
     ></import-markdown>
     <h2>Example App Shell</h2>
